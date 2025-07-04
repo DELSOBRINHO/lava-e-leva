@@ -1,0 +1,33 @@
+{
+    "version":  "0.0.0",
+    "name":  "lava-e-leva",
+    "scripts":  {
+                    "test":  "echo \"No tests specified\" \u0026\u0026 exit 0",
+                    "preview":  "vite preview",
+                    "build":  "tsc \u0026\u0026 vite build",
+                    "dev":  "vite",
+                    "lint":  "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+                },
+    "devDependencies":  {
+                            "@types/react":  "^18.2.43",
+                            "typescript":  "^5.2.2",
+                            "vite":  "^5.0.8",
+                            "eslint-plugin-react-refresh":  "^0.4.5",
+                            "eslint":  "^8.55.0",
+                            "postcss":  "^8.4.32",
+                            "tailwindcss":  "^3.3.6",
+                            "@typescript-eslint/parser":  "^6.14.0",
+                            "eslint-plugin-react-hooks":  "^4.6.0",
+                            "@typescript-eslint/eslint-plugin":  "^6.14.0",
+                            "autoprefixer":  "^10.4.16",
+                            "@vitejs/plugin-react":  "^4.2.1",
+                            "@types/react-dom":  "^18.2.17"
+                        },
+    "type":  "module",
+    "dependencies":  {
+                         "@supabase/supabase-js":  "^2.38.4",
+                         "react":  "^18.2.0",
+                         "react-dom":  "^18.2.0"
+                     },
+    "private":  true
+}
