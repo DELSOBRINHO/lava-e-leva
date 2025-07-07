@@ -13,7 +13,7 @@ const StarIcon = ({ filled }: { filled: boolean }) => (
   </svg>
 );
 
-const PartnerCard: React.FC<PartnerCardProps> = ({ partner, onSelect, disabled = false }) => {
+const PartnerCardComponent: React.FC<PartnerCardProps> = ({ partner, onSelect, disabled = false }) => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
       <img className="h-48 w-full object-cover" src={partner.imageUrl} alt={partner.name} />
@@ -40,4 +40,4 @@ const PartnerCard: React.FC<PartnerCardProps> = ({ partner, onSelect, disabled =
   );
 };
 
-export default PartnerCard;
+export const PartnerCard = PartnerCardComponent;

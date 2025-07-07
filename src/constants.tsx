@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { ServiceCategory, LaundryItem, LaundryPartner } from './types';
 
@@ -39,14 +38,14 @@ export const SparklesIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 
-export const SERVICE_CATEGORIES: ServiceCategory[] = [
+export const CATEGORIES: ServiceCategory[] = [
   { id: 'day_to_day', name: 'Roupas do Dia a Dia', description: 'Lavagem e secagem por Kg.', icon: <WashingMachineIcon className="w-8 h-8 text-blue-500" /> },
   { id: 'social', name: 'Peças Sociais', description: 'Cuidado especial para suas peças.', icon: <ShirtIcon className="w-8 h-8 text-blue-500" /> },
   { id: 'bed_bath', name: 'Cama e Banho', description: 'Edredons, lençóis e toalhas.', icon: <BedIcon className="w-8 h-8 text-blue-500" /> },
   { id: 'special', name: 'Limpeza Especial', description: 'Tapetes, cortinas e mais.', icon: <SparklesIcon className="w-8 h-8 text-blue-500" /> },
 ];
 
-export const LAUNDRY_ITEMS: LaundryItem[] = [
+export const ITEMS: LaundryItem[] = [
     // Dia a Dia
     { id: 'kg_colorful', name: 'Roupa Colorida (Kg)', price: 15.00, category: 'day_to_day' },
     { id: 'kg_white', name: 'Roupa Branca (Kg)', price: 18.00, category: 'day_to_day' },
@@ -65,7 +64,7 @@ export const LAUNDRY_ITEMS: LaundryItem[] = [
     { id: 'curtain', name: 'Cortina (m²)', price: 22.00, category: 'special' },
 ];
 
-export const MOCK_PARTNERS: LaundryPartner[] = [
+export const PARTNERS: LaundryPartner[] = [
     { id: 'p1', name: 'Lavanderia Clean & Fresh', rating: 4.9, deliveryTime: 'Amanhã', imageUrl: 'https://picsum.photos/seed/laundry1/400/300' },
     { id: 'p2', name: 'Lava Rápido do Bairro', rating: 4.7, deliveryTime: 'Amanhã', imageUrl: 'https://picsum.photos/seed/laundry2/400/300' },
     { id: 'p3', name: 'Toque de Cuidado Lavanderia', rating: 4.8, deliveryTime: '2 dias', imageUrl: 'https://picsum.photos/seed/laundry3/400/300' },

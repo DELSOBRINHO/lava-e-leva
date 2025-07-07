@@ -6,7 +6,7 @@ interface BasketSummaryProps {
   onConfirm: () => void;
 }
 
-const BasketSummary: React.FC<BasketSummaryProps> = ({ basket, onConfirm }) => {
+const BasketSummaryComponent: React.FC<BasketSummaryProps> = ({ basket, onConfirm }) => {
   const totalItems = basket.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = basket.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -32,4 +32,4 @@ const BasketSummary: React.FC<BasketSummaryProps> = ({ basket, onConfirm }) => {
   );
 };
 
-export default BasketSummary;
+export const BasketSummary = BasketSummaryComponent;

@@ -23,8 +23,16 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
+    "rootDir": "src",
+    "baseUrl": "src",
     "paths": {
-      "@/*" :  ["./*"]
-    }
+      "@/*" :  ["./*"],
+      "@components/*": ["components/*"],
+      "@services/*": ["services/*"],
+      "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["assets/*"]
+    },
+    "types": ["vite/client"]
   }
 }

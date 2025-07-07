@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 if (!process.env.API_KEY) {
@@ -38,3 +37,5 @@ export async function getStainRemovalTips(stainDescription: string): Promise<str
     return "Desculpe, não foi possível obter dicas no momento. Por favor, tente novamente mais tarde.";
   }
 }
+
+export { getStainRemovalTips };

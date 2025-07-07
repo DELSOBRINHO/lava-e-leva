@@ -21,7 +21,7 @@ const CheckCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-const OrderStatusTracker: React.FC<OrderStatusTrackerProps> = ({ order, onNextStep }) => {
+const OrderStatusTrackerComponent: React.FC<OrderStatusTrackerProps> = ({ order, onNextStep }) => {
   const currentStatusIndex = statusLevels.indexOf(order.status);
 
   return (
@@ -81,4 +81,4 @@ const OrderStatusTracker: React.FC<OrderStatusTrackerProps> = ({ order, onNextSt
   );
 };
 
-export default OrderStatusTracker;
+export const OrderStatusTracker = OrderStatusTrackerComponent;

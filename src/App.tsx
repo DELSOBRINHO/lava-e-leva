@@ -1,16 +1,16 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
-import { supabase } from './services/supabaseClient';
-import type { Session } from '@supabase/supabase-js';
-import Header from './components/Header';
-import CategoryCard from './components/CategoryCard';
-import ServiceSelection from './components/ServiceSelection';
-import BasketSummary from './components/BasketSummary';
-import PartnerSelection from './components/PartnerSelection';
-import OrderStatusTracker from './components/OrderStatusTracker';
+import { supabase } from "./services/supabaseClient";
+import type { Session, SupabaseClient } from '@supabase/supabase-js';
+import { Header } from "./components/Header";
+import { CategoryCard } from "./components/CategoryCard";
+import { ServiceSelection } from "./client/ServiceSelection";
+import { BasketSummary } from "./components/BasketSummary";
+import { PartnerSelection } from "./partner/PartnerSelection";
+import { OrderStatusTracker } from "./client/OrderStatusTracker";
 // import StainHelper from './components/StainHelper';
-import Auth from './components/Auth';
-import OrderHistory from './components/OrderHistory';
-import { SERVICE_CATEGORIES, LAUNDRY_ITEMS, MOCK_PARTNERS } from './constants';
+import { Auth } from "./components/Auth";
+import { OrderHistory } from "./components/OrderHistory";
+import { CATEGORIES, PARTNERS, ITEMS } from "./constants";
 import { AppView, OrderStatus } from './types';
 import type { ServiceCategory, BasketItem, LaundryItem, LaundryPartner, Order } from './types';
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
                 return;
             }
 
-            const orderIds = ordersData.map(o => o.id);
+            const orderIds = (ordersData as any[]).map((o: any) => o.id);
             const { data: itemsData, error: itemsError } = await supabase
                 .from('order_items')
                 .select('*')
@@ -48,14 +48,14 @@ const App: React.FC = () => {
             if (itemsError) throw itemsError;
 
             // Using mock partners for simplicity, in a real app, you'd fetch partners too
-            const partners = MOCK_PARTNERS;
+            const partners = PARTNERS;
 
-            const history: Order[] = ordersData.map(order => {
-                const partner = partners.find(p => p.id === order.partner_id) || MOCK_PARTNERS[0];
-                const itemsForOrder = itemsData?.filter(i => i.order_id === order.id) || [];
+            const history: Order[] = (ordersData as any[]).map((order: any) => {
+                const partner = partners.find((p: LaundryPartner) => p.id === order.partner_id) || PARTNERS[0];
+                const itemsForOrder = (itemsData as any[] | undefined)?.filter((i: any) => i.order_id === order.id) || [];
                 
-                const basketItems: BasketItem[] = itemsForOrder.map(item => {
-                    const laundryItem = LAUNDRY_ITEMS.find(li => li.id === item.item_id);
+                const basketItems: BasketItem[] = itemsForOrder.map((item: any) => {
+                    const laundryItem = ITEMS.find((li: LaundryItem) => li.id === item.item_id);
                     return {
                         ...(laundryItem || {} as LaundryItem),
                         id: item.item_id,
@@ -88,15 +88,15 @@ const App: React.FC = () => {
             return;
         }
         setIsLoading(true);
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setSession(session);
-            if (session) {
-                fetchOrders(session.user.id);
+        supabase.auth.getSession().then(({ data }: { data: { session: Session | null } }) => {
+            setSession(data.session);
+            if (data.session) {
+                fetchOrders(data.session.user.id);
             }
             setIsLoading(false);
         });
 
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: string, session: Session | null) => {
             setSession(session);
             if (_event === 'SIGNED_IN') {
                 if (session) fetchOrders(session.user.id);
@@ -291,7 +291,7 @@ const App: React.FC = () => {
                             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Sua rotina mais simples. Suas roupas, impecáveis. Escolha um serviço para começar.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                            {SERVICE_CATEGORIES.map(cat => (
+                            {CATEGORIES.map(cat => (
                                 <CategoryCard key={cat.id} category={cat} onClick={() => handleCategorySelect(cat)} />
                             ))}
                         </div>

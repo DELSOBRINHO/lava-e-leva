@@ -1,6 +1,6 @@
-import { LAUNDRY_ITEMS } from '../constants';
+import { ITEMS } from '../constants';
 import type { ServiceCategory, LaundryItem, BasketItem } from '../types';
-import ItemSelector from './ItemSelector';
+import { ItemSelector } from '../components/ItemSelector';
 
 interface ServiceSelectionProps {
   category: ServiceCategory;
@@ -8,8 +8,8 @@ interface ServiceSelectionProps {
   updateBasket: (item: LaundryItem, quantity: number) => void;
 }
 
-const ServiceSelection: React.FC<ServiceSelectionProps> = ({ category, basket, updateBasket }) => {
-  const itemsInCategory = LAUNDRY_ITEMS.filter(item => item.category === category.id);
+export const ServiceSelection: React.FC<ServiceSelectionProps> = ({ category, basket, updateBasket }) => {
+  const itemsInCategory = ITEMS.filter(item => item.category === category.id);
 
   const getQuantity = (itemId: string) => {
     const itemInBasket = basket.find(item => item.id === itemId);
@@ -33,5 +33,3 @@ const ServiceSelection: React.FC<ServiceSelectionProps> = ({ category, basket, u
     </div>
   );
 };
-
-export default ServiceSelection;

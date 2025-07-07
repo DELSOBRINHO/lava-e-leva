@@ -7,7 +7,7 @@ interface ItemSelectorProps {
   onQuantityChange: (newQuantity: number) => void;
 }
 
-const ItemSelector: React.FC<ItemSelectorProps> = ({ item, quantity, onQuantityChange }) => {
+const ItemSelectorComponent: React.FC<ItemSelectorProps> = ({ item, quantity, onQuantityChange }) => {
   const handleDecrement = () => {
     if (quantity > 0) {
       onQuantityChange(quantity - 1);
@@ -44,4 +44,4 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ item, quantity, onQuantityC
   );
 };
 
-export default ItemSelector;
+export const ItemSelector = ItemSelectorComponent;

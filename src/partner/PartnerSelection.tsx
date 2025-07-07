@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
 import type { LaundryPartner } from '../types';
-import PartnerCard from './PartnerCard';
-import { MOCK_PARTNERS } from '../constants';
+import { PartnerCard } from './PartnerCard';
+import { PARTNERS } from '../constants';
 
 interface PartnerSelectionProps {
   onPartnerSelect: (partner: LaundryPartner) => Promise<void>;
 }
 
-const PartnerSelection: React.FC<PartnerSelectionProps> = ({ onPartnerSelect }) => {
+const PartnerSelectionComponent: React.FC<PartnerSelectionProps> = ({ onPartnerSelect }) => {
   const [partners, setPartners] = useState<LaundryPartner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
@@ -23,7 +23,7 @@ const PartnerSelection: React.FC<PartnerSelectionProps> = ({ onPartnerSelect }) 
       if (!supabase) {
         console.log("Supabase not configured, using mock partner data.");
         setTimeout(() => {
-          setPartners(MOCK_PARTNERS);
+          setPartners(PARTNERS);
           setIsLoading(false);
         }, 300);
         return;
@@ -44,7 +44,7 @@ const PartnerSelection: React.FC<PartnerSelectionProps> = ({ onPartnerSelect }) 
         console.error('Error fetching partners from Supabase:', err);
         setError('Não foi possível carregar as lavanderias. Por favor, tente novamente mais tarde.');
         // Fallback to mock data on error
-        setPartners(MOCK_PARTNERS);
+        setPartners(PARTNERS);
       } finally {
         setIsLoading(false);
       }
@@ -109,4 +109,4 @@ const PartnerSelection: React.FC<PartnerSelectionProps> = ({ onPartnerSelect }) 
   );
 };
 
-export default PartnerSelection;
+export const PartnerSelection = PartnerSelectionComponent;

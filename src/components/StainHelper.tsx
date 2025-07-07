@@ -1,9 +1,8 @@
-
 import React, { useState, useCallback } from 'react';
 import { getStainRemovalTips } from '../services/geminiService';
 import { SparklesIcon } from '../constants';
 
-const StainHelper: React.FC = () => {
+const StainHelperComponent: React.FC = () => {
   const [stainDescription, setStainDescription] = useState('');
   const [tips, setTips] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,4 +76,4 @@ const StainHelper: React.FC = () => {
   );
 };
 
-export default StainHelper;
+export const StainHelper = StainHelperComponent;

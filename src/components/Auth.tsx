@@ -5,7 +5,7 @@ interface AuthProps {
     onLoginSuccess: () => void;
 }
 
-const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
+const AuthComponent: React.FC<AuthProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -117,4 +117,4 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
   );
 };
 
-export default Auth;
+export const Auth = AuthComponent;
