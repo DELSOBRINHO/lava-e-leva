@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import './index.css'
 import { Auth } from './pages/Auth'
 import { Home } from './pages/Home'
 import { Header } from './components/common'
 import { NotificationProvider } from './contexts/NotificationContext'
+import { useState } from 'react'
 
 // Tipos de perfil
 const roles = ['customer', 'delivery', 'laundry'] as const;
