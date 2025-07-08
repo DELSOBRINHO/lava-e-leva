@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCustomerOrders } from '../../services/orderService';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 import AvaliacaoModal from '../../components/cliente/AvaliacaoModal';
 import { submitReview } from '../../services/reviewService';
 import { useNotification } from '../../contexts/NotificationContext';

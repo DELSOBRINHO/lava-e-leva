@@ -37,30 +37,3 @@ export default function App() {
     </NotificationProvider>
   );
 }
-
-function CustomerHome() {
-  return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Bem-vindo, Cliente!</h2>
-      <p className="mb-2">Aqui você pode solicitar serviços de lavagem, acompanhar pedidos e avaliar parceiros.</p>
-    </div>
-  );
-}
-
-function DeliveryHome() {
-                return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Bem-vindo, Entregador!</h2>
-      <p className="mb-2">Aqui você pode ver entregas disponíveis, acompanhar rotas e atualizar seu status.</p>
-                    </div>
-                );
-        }
-
-function LaundryHome() {
-    return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-4">Bem-vindo, Lavanderia!</h2>
-      <p className="mb-2">Aqui você pode gerenciar pedidos, serviços e avaliações dos clientes.</p>
-        </div>
-    );
-}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getLaundryHistory } from '../../services/orderService';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function HistoricoPedidos() {
   const { user } = useAuth();

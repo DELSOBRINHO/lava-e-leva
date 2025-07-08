@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAvailableOrdersForDeliveryman, acceptOrder } from '../../services/orderService';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function PedidosDisponiveis() {
   const { user } = useAuth();

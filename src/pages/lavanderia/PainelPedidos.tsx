@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getLaundryOrders, updateOrderStatus } from '../../services/orderService';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 import { useNotification } from '../../contexts/NotificationContext';
 
 const STATUS_OPTIONS = [

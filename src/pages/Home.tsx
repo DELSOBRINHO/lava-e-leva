@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface HomeProps {
   role: 'customer' | 'delivery' | 'laundry';
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDeliverymanHistory } from '../../services/orderService';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function HistoricoCorridas() {
   const { user } = useAuth();

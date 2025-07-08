@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getServicesByLaundry } from '../../services/laundryService';
 import { createOrder } from '../../services/orderService';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function SelecaoServico() {
   const { laundryId } = useParams();
