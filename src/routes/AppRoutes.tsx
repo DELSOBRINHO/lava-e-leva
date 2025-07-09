@@ -1,29 +1,34 @@
+import { Route } from 'react-router-dom';
 import { BuscaLavanderias, SelecaoServico, AcompanhamentoPedido } from '../pages/cliente';
 import { PedidosDisponiveis, AcompanharPedidos, HistoricoCorridas } from '../pages/entregador';
 import { PainelPedidos, HistoricoPedidos } from '../pages/lavanderia';
+import { useAuth } from '../contexts/AuthContext';
 
-{perfil === "cliente" && (
-  <>
-    <Route path="/" element={<BuscaLavanderias />} />
-    <Route path="/lavanderia/:laundryId/servicos" element={<SelecaoServico />} />
-    <Route path="/pedidos" element={<AcompanhamentoPedido />} />
-    {/* Outras rotas do cliente */}
-  </>
-)}
+export default function AppRoutes() {
+  const { role } = useAuth();
 
-{perfil === "entregador" && (
-  <>
-    <Route path="/" element={<PedidosDisponiveis />} />
-    <Route path="/meus-pedidos" element={<AcompanharPedidos />} />
-    <Route path="/historico" element={<HistoricoCorridas />} />
-    {/* Outras rotas do entregador */}
-  </>
-)}
-
-{perfil === "lavanderia" && (
-  <>
-    <Route path="/" element={<PainelPedidos />} />
-    <Route path="/historico" element={<HistoricoPedidos />} />
-    {/* Outras rotas da lavanderia */}
-  </>
-)} 
+  return (
+    <>
+      {role === 'customer' && (
+        <>
+          <Route path="/" element={<BuscaLavanderias />} />
+          <Route path="/lavanderia/:laundryId/servicos" element={<SelecaoServico />} />
+          <Route path="/pedidos" element={<AcompanhamentoPedido />} />
+        </>
+      )}
+      {role === 'delivery' && (
+        <>
+          <Route path="/" element={<PedidosDisponiveis />} />
+          <Route path="/meus-pedidos" element={<AcompanharPedidos />} />
+          <Route path="/historico" element={<HistoricoCorridas />} />
+        </>
+      )}
+      {role === 'laundry' && (
+        <>
+          <Route path="/" element={<PainelPedidos />} />
+          <Route path="/historico" element={<HistoricoPedidos />} />
+        </>
+      )}
+    </>
+  );
+} 

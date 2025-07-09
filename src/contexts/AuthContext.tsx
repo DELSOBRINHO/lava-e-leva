@@ -6,6 +6,7 @@ import { useEnsureProfile } from '../hooks/useEnsureProfile';
 interface AuthContextType {
   user: any;
   loading: boolean;
+  role: string;
   signIn: (email: string, password: string) => Promise<any>;
   signUp: (email: string, password: string, role: string) => Promise<any>;
   signOut: () => Promise<void>;
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, role, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
