@@ -153,3 +153,16 @@
 ---
 
 > Atualize este checklist conforme as funcionalidades forem implementadas. 
+
+---
+
+## Atualizações Recentes (Jul/2025)
+
+- Refatoração do código para remover imports desnecessários de React em todos os arquivos `.tsx`.
+- Padronização das importações do hook `useAuth` para utilizar o contexto correto.
+- Ajuste das importações de tipos (`import type`) para compatibilidade com TypeScript moderno.
+- Remoção de componentes não utilizados (`CustomerHome`, `DeliveryHome`, `LaundryHome`) para evitar warnings e erros de build.
+- Instalação e configuração correta das dependências `react-router-dom` e seus tipos.
+- Correção de caminhos de imports em diversos arquivos.
+- Garantia de que todos os secrets necessários para deploy (Vercel e Supabase) estão configurados no GitHub.
+- Checklist de build e deploy revisado para garantir sucesso no pipeline CI/CD. 
