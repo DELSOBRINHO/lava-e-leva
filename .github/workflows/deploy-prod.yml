@@ -1,10 +1,9 @@
-name: Deploy to Vercel (main & develop)
+name: Deploy to Vercel (production)
 
 on:
   push:
     branches:
       - main
-      - develop
   workflow_dispatch:
 
 jobs:
@@ -25,25 +24,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Vercel (main)
-        if: github.ref == 'refs/heads/main'
+      - name: Deploy to Vercel (production)
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_PROD }}
           vercel-args: --prod
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL_PROD }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY_PROD }}
-
-      - name: Deploy to Vercel (develop)
-        if: github.ref == 'refs/heads/develop'
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_PROD }}
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL_PROD }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY_PROD }} 
