@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../lib/supabaseClient';
 
 export async function ensureProfile(user: any, role = 'customer', name = '', address = {}) {
   if (!user) return;
