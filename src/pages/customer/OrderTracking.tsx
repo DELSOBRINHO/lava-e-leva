@@ -6,7 +6,7 @@ import { submitReview } from '../../services/reviewService';
 import { useNotification } from '../../contexts/NotificationContext';
 import { supabase } from '../../services/supabaseClient';
 
-export default function AcompanhamentoPedido() {
+export default function OrderTracking() {
   const { user } = useAuth();
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

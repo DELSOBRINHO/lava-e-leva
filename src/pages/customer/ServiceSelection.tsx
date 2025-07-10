@@ -4,7 +4,7 @@ import { getServicesByLaundry } from '../../services/laundryService';
 import { createOrder } from '../../services/orderService';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function SelecaoServico() {
+export default function ServiceSelection() {
   const { laundryId } = useParams();
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

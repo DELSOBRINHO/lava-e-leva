@@ -7,7 +7,7 @@ export default function Header() {
       <div className="w-10 h-10 bg-brand-accent rounded-full flex items-center justify-center font-bold text-brand-dark text-xl">
         L&L
       </div>
-      <h1 className="text-2xl font-bold tracking-tight">Lava & Leva</h1>
+      <h1 className="text-2xl font-bold tracking-tight">Lava-e-Leva</h1>
     </header>
   );
 } 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAvailableOrdersForDeliveryman, acceptOrder } from '../../services/orderService';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function PedidosDisponiveis() {
+export default function AvailableOrders() {
   const { user } = useAuth();
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
