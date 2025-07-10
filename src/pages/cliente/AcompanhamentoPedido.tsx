@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCustomerOrders } from '../../services/orderService';
 import { useAuth } from '../../contexts/AuthContext';
 import AvaliacaoModal from '../../components/cliente/AvaliacaoModal';
 import { submitReview } from '../../services/reviewService';
 import { useNotification } from '../../contexts/NotificationContext';
-import { supabase } from '../../services/supabaseClient';
+import { supabase } from '../../supabaseClient';
 
 export default function AcompanhamentoPedido() {
   const { user } = useAuth();
@@ -13,7 +13,6 @@ export default function AcompanhamentoPedido() {
   const [error, setError] = useState<string | null>(null);
   const [avaliarPedido, setAvaliarPedido] = useState<string | null>(null);
   const [avaliarEntregador, setAvaliarEntregador] = useState<string | null>(null);
-  const [avaliando, setAvaliando] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const { notify } = useNotification();
 
@@ -80,7 +79,6 @@ export default function AcompanhamentoPedido() {
         onClose={() => setAvaliarPedido(null)}
         onSubmit={async (rating, comment) => {
           if (!avaliarPedido) return;
-          setAvaliando(true);
           try {
             // Avalia lavanderia
             const order = orders.find(o => o.id === avaliarPedido);
@@ -100,7 +98,6 @@ export default function AcompanhamentoPedido() {
             setError(err.message);
             notify('Erro ao enviar avaliação.', 'error');
           } finally {
-            setAvaliando(false);
             setAvaliarPedido(null);
           }
         }}
@@ -111,7 +108,6 @@ export default function AcompanhamentoPedido() {
         onClose={() => setAvaliarEntregador(null)}
         onSubmit={async (rating, comment) => {
           if (!avaliarEntregador) return;
-          setAvaliando(true);
           try {
             // Avalia entregador
             const order = orders.find(o => o.id === avaliarEntregador);
@@ -131,7 +127,6 @@ export default function AcompanhamentoPedido() {
             setError(err.message);
             notify('Erro ao enviar avaliação.', 'error');
           } finally {
-            setAvaliando(false);
             setAvaliarEntregador(null);
           }
         }}
