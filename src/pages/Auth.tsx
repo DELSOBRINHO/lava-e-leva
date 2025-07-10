@@ -20,17 +20,19 @@ export const Auth: React.FC<AuthProps> = ({ onAuth }) => {
   const [role, setRole] = useState<Role>('customer');
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccess(null);
     try {
       if (isRegister) {
         const { error } = await signUp(email, password, role);
         if (error) setError(error.message);
-        else onAuth(role);
+        else setSuccess('Cadastro realizado! Verifique seu e-mail para confirmar sua conta.');
       } else {
         const { error } = await signIn(email, password);
         if (error) setError(error.message);
@@ -50,6 +52,7 @@ export const Auth: React.FC<AuthProps> = ({ onAuth }) => {
           {isRegister ? 'Criar Conta' : 'Entrar no Lava & Leva'}
         </h1>
         {error && <div className="mb-4 text-red-600 text-sm">{error}</div>}
+        {success && <div className="mb-4 text-green-600 text-sm">{success}</div>}
         <label className="block mb-2 text-sm font-medium">Email</label>
         <input
           type="email"

@@ -3,14 +3,19 @@ import { supabase } from '../supabaseClient';
 
 export async function ensureProfile(user, role = 'customer', name = '', address = {}) {
   if (!user) return;
-  const { data: profile } = await supabase
+  const { data: profile, error: selectError } = await supabase
     .from('profiles')
     .select('*')
     .eq('user_id', user.id)
     .single();
 
+  if (selectError) {
+    console.error('Erro ao buscar perfil:', selectError);
+    return;
+  }
+
   if (!profile) {
-    await supabase.from('profiles').insert([
+    const { error: insertError } = await supabase.from('profiles').insert([
       {
         user_id: user.id,
         name: name || user.email,
@@ -18,6 +23,11 @@ export async function ensureProfile(user, role = 'customer', name = '', address 
         address,
       }
     ]);
+    if (insertError) {
+      console.error('Erro ao criar perfil:', insertError);
+    } else {
+      console.log('Perfil criado com sucesso!');
+    }
   }
 }
 
