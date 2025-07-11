@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
-import { BuscaLavanderias, SelecaoServico, AcompanhamentoPedido } from '../pages/cliente';
-import { PedidosDisponiveis, AcompanharPedidos, HistoricoCorridas } from '../pages/entregador';
-import { PainelPedidos, HistoricoPedidos } from '../pages/lavanderia';
+import { LaundrySearch, ServiceSelection, OrderTracking } from '../pages/customer';
+import { AvailableOrders, OrderFollowUp, DeliveryHistory } from '../pages/delivery';
+import { OrdersPanel, OrdersHistory } from '../pages/laundry';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function AppRoutes() {
@@ -11,22 +11,22 @@ export default function AppRoutes() {
     <>
       {role === 'customer' && (
         <>
-          <Route path="/" element={<BuscaLavanderias />} />
-          <Route path="/lavanderia/:laundryId/servicos" element={<SelecaoServico />} />
-          <Route path="/pedidos" element={<AcompanhamentoPedido />} />
+          <Route path="/" element={<LaundrySearch />} />
+          <Route path="/laundry/:laundryId/services" element={<ServiceSelection />} />
+          <Route path="/orders" element={<OrderTracking />} />
         </>
       )}
       {role === 'delivery' && (
         <>
-          <Route path="/" element={<PedidosDisponiveis />} />
-          <Route path="/meus-pedidos" element={<AcompanharPedidos />} />
-          <Route path="/historico" element={<HistoricoCorridas />} />
+          <Route path="/" element={<AvailableOrders />} />
+          <Route path="/my-orders" element={<OrderFollowUp />} />
+          <Route path="/history" element={<DeliveryHistory />} />
         </>
       )}
       {role === 'laundry' && (
         <>
-          <Route path="/" element={<PainelPedidos />} />
-          <Route path="/historico" element={<HistoricoPedidos />} />
+          <Route path="/" element={<OrdersPanel />} />
+          <Route path="/history" element={<OrdersHistory />} />
         </>
       )}
     </>

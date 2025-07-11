@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { getLaundries } from '../../services/laundryService';
+import React, { useEffect, useState } from 'react';
+import { getLaundries } from '../../services/laundry-service';
 import { useNavigate } from 'react-router-dom';
 
-export default function BuscaLavanderias() {
+export default function LaundrySearch() {
   const [laundries, setLaundries] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -17,14 +17,14 @@ export default function BuscaLavanderias() {
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-brand-dark">Buscar Lavanderias</h1>
-      {/* Filtros de busca (localização, avaliação, preço, serviços) */}
+      <h1 className="text-2xl font-bold mb-4 text-brand-dark">Laundry Search</h1>
+      {/* Search filters (location, rating, price, services) */}
       <div className="mb-4">
-        <input className="border border-brand-primary rounded-md p-2 w-full focus:ring-2 focus:ring-brand-accent" placeholder="Digite o nome, bairro ou serviço..." />
+        <input className="border border-brand-primary rounded-md p-2 w-full focus:ring-2 focus:ring-brand-accent" placeholder="Type name, neighborhood or service..." />
       </div>
-      {loading && <div className="text-brand-primary">Carregando...</div>}
-      {error && <div className="text-red-500">Erro: {error}</div>}
-      {/* Listagem de lavanderias (mock inicial) */}
+      {loading && <div className="text-brand-primary">Loading...</div>}
+      {error && <div className="text-red-500">Error: {error}</div>}
+      {/* Laundry list (initial mock) */}
       <div className="space-y-2">
         {laundries.map((laundry) => (
           <div
