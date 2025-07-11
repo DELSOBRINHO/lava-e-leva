@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getServicesByLaundry } from '../../services/laundryService';
 import { createOrder } from '../../services/orderService';

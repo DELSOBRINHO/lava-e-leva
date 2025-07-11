@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCustomerOrders } from '../../services/orderService';
 import { useAuth } from '../../contexts/AuthContext';
 import AvaliacaoModal from '../../components/cliente/AvaliacaoModal';
 import { submitReview } from '../../services/reviewService';
 import { useNotification } from '../../contexts/NotificationContext';
-import { supabase } from '../../services/supabaseClient';
+import { supabase } from '../../lib/supabaseClient';
 
 export default function OrderTracking() {
   const { user } = useAuth();
@@ -13,7 +13,7 @@ export default function OrderTracking() {
   const [error, setError] = useState<string | null>(null);
   const [avaliarPedido, setAvaliarPedido] = useState<string | null>(null);
   const [avaliarEntregador, setAvaliarEntregador] = useState<string | null>(null);
-  const [avaliando, setAvaliando] = useState(false);
+  const [_avaliando, setAvaliando] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const { notify } = useNotification();
 
