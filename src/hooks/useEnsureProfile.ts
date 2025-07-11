@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import { supabase } from '../lib/supabaseClient';
 
-export async function ensureProfile(user, role = 'customer', name = '', address = {}) {
+export async function ensureProfile(user: any, role = 'customer', name = '', address = {}) {
   if (!user) return;
   const { data: profile, error: selectError } = await supabase
     .from('profiles')
@@ -31,7 +31,7 @@ export async function ensureProfile(user, role = 'customer', name = '', address 
   }
 }
 
-export function useEnsureProfile(user, role = 'customer', name = '', address = {}) {
+export function useEnsureProfile(user: any, role = 'customer', name = '', address = {}) {
   useEffect(() => {
     if (user) {
       ensureProfile(user, role, name, address);

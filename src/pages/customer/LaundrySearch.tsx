@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getLaundries } from '../../services/laundry-service';
+import { useEffect, useState } from 'react';
+import { getLaundries } from '../../services/laundryService';
 import { useNavigate } from 'react-router-dom';
 
 export default function LaundrySearch() {
@@ -11,7 +11,7 @@ export default function LaundrySearch() {
   useEffect(() => {
     getLaundries()
       .then(setLaundries)
-      .catch((err) => setError(err.message))
+      .catch((err: any) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
