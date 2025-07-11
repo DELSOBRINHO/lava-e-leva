@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCustomerOrders } from '../../services/orderService';
 import { useAuth } from '../../contexts/AuthContext';
-import AvaliacaoModal from '../../components/cliente/AvaliacaoModal';
+import ReviewModal from '../../components/customer/ReviewModal';
 import { submitReview } from '../../services/reviewService';
 import { useNotification } from '../../contexts/NotificationContext';
 import { supabase } from '../../lib/supabaseClient';
@@ -75,10 +75,10 @@ export default function OrderTracking() {
         {!loading && orders.length === 0 && <div className="text-brand-gray">Nenhum pedido encontrado.</div>}
       </div>
       {/* Modal de avaliação lavanderia */}
-      <AvaliacaoModal
+      <ReviewModal
         open={!!avaliarPedido}
         onClose={() => setAvaliarPedido(null)}
-        onSubmit={async (rating, comment) => {
+        onSubmit={async (rating: number, comment: string) => {
           if (!avaliarPedido) return;
           setAvaliando(true);
           try {
@@ -106,10 +106,10 @@ export default function OrderTracking() {
         }}
       />
       {/* Modal de avaliação entregador */}
-      <AvaliacaoModal
+      <ReviewModal
         open={!!avaliarEntregador}
         onClose={() => setAvaliarEntregador(null)}
-        onSubmit={async (rating, comment) => {
+        onSubmit={async (rating: number, comment: string) => {
           if (!avaliarEntregador) return;
           setAvaliando(true);
           try {
