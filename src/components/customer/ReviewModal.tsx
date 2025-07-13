@@ -1,4 +1,7 @@
 import { useState } from 'react';
+// Adicione as importações do Radix se necessário
+// import { DialogContent, DialogTitle } from '@radix-ui/react-dialog';
+// import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 interface AvaliacaoModalProps {
   open: boolean;
@@ -16,7 +19,13 @@ export default function AvaliacaoModal({ open, onClose, onSubmit }: AvaliacaoMod
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       <div className="bg-white rounded-md p-6 w-full max-w-md shadow-lg">
-        <h2 className="text-xl font-bold mb-4 text-brand-dark">Avalie o serviço</h2>
+        {/* DialogTitle acessível para Radix UI */}
+        <h2 className="text-xl font-bold mb-4 text-brand-dark" id="review-modal-title">Avalie o serviço</h2>
+        {/* Se usar Radix, use:
+        <DialogTitle asChild>
+          <h2 id="review-modal-title" className="text-xl font-bold mb-4 text-brand-dark">Avalie o serviço</h2>
+        </DialogTitle>
+        */}
         <div className="flex gap-1 mb-4">
           {[1,2,3,4,5].map((star) => (
             <button
@@ -24,6 +33,7 @@ export default function AvaliacaoModal({ open, onClose, onSubmit }: AvaliacaoMod
               className={star <= rating ? 'text-yellow-400 text-2xl' : 'text-gray-300 text-2xl'}
               onClick={() => setRating(star)}
               type="button"
+              aria-label={`Dar nota ${star}`}
             >★</button>
           ))}
         </div>
@@ -33,6 +43,7 @@ export default function AvaliacaoModal({ open, onClose, onSubmit }: AvaliacaoMod
           placeholder="Deixe um comentário (opcional)"
           value={comment}
           onChange={e => setComment(e.target.value)}
+          aria-labelledby="review-modal-title"
         />
         <div className="flex justify-end gap-2">
           <button className="px-4 py-2 rounded-md bg-gray-200 text-brand-dark" onClick={onClose} disabled={submitting}>Cancelar</button>
