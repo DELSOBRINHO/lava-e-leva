@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import { supabase } from '../lib/supabaseClient';
-import { useEnsureProfile } from '../hooks/useEnsureProfile';
+import { useEnsureProfile, ensureProfile } from '../hooks/useEnsureProfile';
 
 interface AuthContextType {
   user: any;
@@ -39,6 +39,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEnsureProfile(user, role);
+
+  // Garante criação do perfil após autenticação (inclusive após confirmação de e-mail)
+  useEffect(() => {
+    if (user) {
+      ensureProfile(user, role);
+    }
+  }, [user, role]);
 
   const signIn = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
